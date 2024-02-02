@@ -44,6 +44,6 @@ func (fc *foodRoutes) initFoodRoutes(e *echo.Echo){
 	food.DELETE("/food/:id", fc.foodController.DeleteFood)
 
 	// Search by category
-	food.GET("/food/category/:categoryca", fc.foodController.SearchFoodByCategory)
+	food.GET("/food/category/:category", fc.foodController.SearchFoodByCategory)
 
 }
