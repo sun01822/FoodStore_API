@@ -22,17 +22,32 @@ func FoodDBInstance(d *gorm.DB) domain.IFoodRepo {
 // GetFoods function to get all foods from database
 func (repo *foodRepo) GetFoods(model *gorm.Model) ([]models.Food, error) {
 	var foods []models.Food
-	var err error
-	foodID := model.ID
-	if foodID != 0 {
-		err = repo.d.Where("id = ?", foodID).Find(&foods).Error
-	} else {
-		err = repo.d.Find(&foods).Error
-	}
+	// var err error
+	// foodID := model.ID
+	// if foodID != 0 {
+	// 	err = repo.d.Where("id = ?", foodID).Find(&foods).Error
+	// } else {
+	// 	err = repo.d.Find(&foods).Error
+	// }
+	// if err != nil {
+	// 	return []models.Food{}, err
+	// }
+	// return foods, nil
+	err := repo.d.Find(&foods).Error
 	if err != nil {
 		return []models.Food{}, err
 	}
 	return foods, nil
+}
+
+// GetFoodByID function to get a food by ID from database
+func (repo *foodRepo) GetFoodByID(model *gorm.Model) (models.Food, error) {
+	var food models.Food
+	err := repo.d.Where("id = ?", model.ID).Find(&food).Error
+	if err != nil {
+		return models.Food{}, err
+	}
+	return food, nil
 }
 
 // CreateFood function to create a new food in database

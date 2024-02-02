@@ -8,6 +8,7 @@ import (
 // for database Repository operation (call from service)
 type IFoodRepo interface {
 	GetFoods(*gorm.Model) ([]models.Food, error)
+	GetFoodByID(*gorm.Model) (models.Food, error)
 	CreateFood(food *models.Food) error
 	UpdateFood(food *models.Food) error
 	DeleteFood(*gorm.Model) error
@@ -17,6 +18,7 @@ type IFoodRepo interface {
 // for service operation (call from controller)
 type IFoodService interface{
 	GetFoods(*gorm.Model) ([]models.Food, error)
+	GetFoodByID(*gorm.Model) (models.Food, error)
 	CreateFood(user *models.Food) error
 	UpdateFood(user *models.Food) error
 	DeleteFood(*gorm.Model) error

@@ -29,6 +29,14 @@ func (service *foodService) GetFoods(model *gorm.Model) ([]models.Food, error) {
 	return allFoods, nil
 }
 
+// GetFoodByID implements domain.IFoodService.
+func (service *foodService) GetFoodByID(model *gorm.Model) (models.Food, error) {
+	food, err := service.repo.GetFoodByID(model)
+	if err != nil {
+		return food, errors.New("No Food Item Found")
+	}
+	return food, nil
+}
 
 
 // CreateUser implements domain.IFoodService.
