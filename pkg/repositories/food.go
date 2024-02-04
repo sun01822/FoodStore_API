@@ -87,3 +87,13 @@ func (repo *foodRepo) SearchByCategory(category string) ([]models.Food, error) {
 	}
 	return foods, nil
 }
+
+// SortFoodByPrice function to sort food by price
+func (repo *foodRepo) SortFoodByPrice() ([]models.Food, error) {
+	var foods []models.Food
+	err := repo.d.Order("price").Find(&foods).Error
+	if err != nil {
+		return []models.Food{}, err
+	}
+	return foods, nil
+}

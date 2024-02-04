@@ -13,6 +13,7 @@ type IFoodRepo interface {
 	UpdateFood(food *models.Food) error
 	DeleteFood(*gorm.Model) error
 	SearchByCategory(string) ([]models.Food, error)
+	SortFoodByPrice() ([]models.Food, error)
 }
 
 // for service operation (call from controller)
@@ -23,4 +24,5 @@ type IFoodService interface{
 	UpdateFood(user *models.Food) error
 	DeleteFood(*gorm.Model) error
 	SearchByCategory(string) ([]models.Food, error)
+	SortFoodByPrice() ([]models.Food, error)
 }

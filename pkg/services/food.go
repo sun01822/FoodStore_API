@@ -74,3 +74,15 @@ func (service *foodService) SearchByCategory(category string) ([]models.Food, er
 	allFoods = append(allFoods, food...)
 	return allFoods, nil
 }
+
+
+// SortFoodByPrice implements domain.IFoodService.
+func (service *foodService) SortFoodByPrice() ([]models.Food, error) {
+	var allFoods []models.Food
+	food, _ := service.repo.SortFoodByPrice()
+	if len(food) == 0{
+		return nil, errors.New("No Food Item Found")
+	}
+	allFoods = append(allFoods, food...)
+	return allFoods, nil
+}

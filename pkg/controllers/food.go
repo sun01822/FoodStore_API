@@ -19,6 +19,7 @@ type IFoodController interface {
 	UpdateFood(c echo.Context) error
 	DeleteFood(c echo.Context) error
 	SearchFoodByCategory(c echo.Context) error
+	SortFoodByPrice(c echo.Context) error
 }
 
 type foodController struct {
@@ -169,6 +170,15 @@ func (controller *foodController) SearchFoodByCategory(e echo.Context) error {
 		return e.JSON(http.StatusBadRequest, "Enter a valid category")
 	}
 	Food, err := controller.foodSvc.SearchByCategory(tempCategory)
+	if err != nil {
+		return e.JSON(http.StatusInternalServerError, err.Error())
+	}
+	return e.JSON(http.StatusOK, Food)
+}
+
+// SortFoodByPrice implements IFoodController.
+func (controller *foodController) SortFoodByPrice(e echo.Context) error {
+	Food, err := controller.foodSvc.SortFoodByPrice()
 	if err != nil {
 		return e.JSON(http.StatusInternalServerError, err.Error())
 	}

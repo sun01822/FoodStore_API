@@ -38,4 +38,7 @@ func (fc *foodRoutes) initFoodRoutes(e *echo.Echo){
 	// Search by category
 	food.GET("/food/category/:category", fc.foodController.SearchFoodByCategory)
 
+	// Sort by price
+	food.GET("/food/sort", fc.foodController.SortFoodByPrice)
+
 }
